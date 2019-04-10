@@ -1,17 +1,21 @@
 //Package main
 //
 //The following lines will trigger the automatic generation
-//go:generate rm -f -r $PWD/generated/parser/
-//go:generate antlr -Dlanguage=Go -package parser -o generated/parser Expr.g4
+//go:generate rm -f -r $PWD/myparser/
+//go:generate antlr -Dlanguage=Go -package myparser -o myparser Expr.g4
 package main
 
 import (
-	"./generated/parser"
+	parser "/myparser"
+	"fmt"
 
 	"github.com/antlr/antlr4/runtime/Go/antlr"
 )
 
 func main() {
+
+	fmt.Println("Launching ...")
+	return
 
 	// Setup the input
 	is := antlr.NewInputStream("1 + 2 * 3")
