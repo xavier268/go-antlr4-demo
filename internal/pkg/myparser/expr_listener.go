@@ -19,11 +19,17 @@ type ExprListener interface {
 	// EnterBlank is called when entering the blank production.
 	EnterBlank(c *BlankContext)
 
-	// EnterMulDiv is called when entering the MulDiv production.
-	EnterMulDiv(c *MulDivContext)
+	// EnterDiv is called when entering the Div production.
+	EnterDiv(c *DivContext)
 
-	// EnterAddSub is called when entering the AddSub production.
-	EnterAddSub(c *AddSubContext)
+	// EnterAdd is called when entering the Add production.
+	EnterAdd(c *AddContext)
+
+	// EnterSub is called when entering the Sub production.
+	EnterSub(c *SubContext)
+
+	// EnterMul is called when entering the Mul production.
+	EnterMul(c *MulContext)
 
 	// EnterParenth is called when entering the parenth production.
 	EnterParenth(c *ParenthContext)
@@ -46,11 +52,17 @@ type ExprListener interface {
 	// ExitBlank is called when exiting the blank production.
 	ExitBlank(c *BlankContext)
 
-	// ExitMulDiv is called when exiting the MulDiv production.
-	ExitMulDiv(c *MulDivContext)
+	// ExitDiv is called when exiting the Div production.
+	ExitDiv(c *DivContext)
 
-	// ExitAddSub is called when exiting the AddSub production.
-	ExitAddSub(c *AddSubContext)
+	// ExitAdd is called when exiting the Add production.
+	ExitAdd(c *AddContext)
+
+	// ExitSub is called when exiting the Sub production.
+	ExitSub(c *SubContext)
+
+	// ExitMul is called when exiting the Mul production.
+	ExitMul(c *MulContext)
 
 	// ExitParenth is called when exiting the parenth production.
 	ExitParenth(c *ParenthContext)

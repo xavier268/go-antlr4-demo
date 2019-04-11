@@ -44,17 +44,29 @@ func (s *BaseExprListener) EnterBlank(ctx *BlankContext) {}
 // ExitBlank is called when production blank is exited.
 func (s *BaseExprListener) ExitBlank(ctx *BlankContext) {}
 
-// EnterMulDiv is called when production MulDiv is entered.
-func (s *BaseExprListener) EnterMulDiv(ctx *MulDivContext) {}
+// EnterDiv is called when production Div is entered.
+func (s *BaseExprListener) EnterDiv(ctx *DivContext) {}
 
-// ExitMulDiv is called when production MulDiv is exited.
-func (s *BaseExprListener) ExitMulDiv(ctx *MulDivContext) {}
+// ExitDiv is called when production Div is exited.
+func (s *BaseExprListener) ExitDiv(ctx *DivContext) {}
 
-// EnterAddSub is called when production AddSub is entered.
-func (s *BaseExprListener) EnterAddSub(ctx *AddSubContext) {}
+// EnterAdd is called when production Add is entered.
+func (s *BaseExprListener) EnterAdd(ctx *AddContext) {}
 
-// ExitAddSub is called when production AddSub is exited.
-func (s *BaseExprListener) ExitAddSub(ctx *AddSubContext) {}
+// ExitAdd is called when production Add is exited.
+func (s *BaseExprListener) ExitAdd(ctx *AddContext) {}
+
+// EnterSub is called when production Sub is entered.
+func (s *BaseExprListener) EnterSub(ctx *SubContext) {}
+
+// ExitSub is called when production Sub is exited.
+func (s *BaseExprListener) ExitSub(ctx *SubContext) {}
+
+// EnterMul is called when production Mul is entered.
+func (s *BaseExprListener) EnterMul(ctx *MulContext) {}
+
+// ExitMul is called when production Mul is exited.
+func (s *BaseExprListener) ExitMul(ctx *MulContext) {}
 
 // EnterParenth is called when production parenth is entered.
 func (s *BaseExprListener) EnterParenth(ctx *ParenthContext) {}

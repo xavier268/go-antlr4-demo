@@ -17,7 +17,7 @@ func main() {
 	fmt.Println("Launching ...")
 
 	// Setup the input
-	const intxt = "1 + 2 * 3\ntiti = 56 + 68\n"
+	const intxt = "1 - 2 * 3\ntiti = 56 + 68\n"
 	is := antlr.NewInputStream(intxt)
 	fmt.Println("Preparing to process : \n", intxt)
 
@@ -45,11 +45,14 @@ func main() {
 	ast := p.Prog()
 	fmt.Println("Dumping ast : ", ast.ToStringTree(nil, p))
 
-	// Walk the tree with the  listener
-	//listener := NewDumpListener(p)
-	listener := NewComputeListener()
-	antlr.ParseTreeWalkerDefault.Walk(listener, ast)
-	listener.dumpMap()
+	// Walk the tree with the  listeners
+	dl := NewDumpListener(p)
+	antlr.ParseTreeWalkerDefault.Walk(dl, ast)
+
+	cl := NewComputeListener()
+	antlr.ParseTreeWalkerDefault.Walk(cl, ast)
+	cl.dumpMap()
+
 	return
 
 }
