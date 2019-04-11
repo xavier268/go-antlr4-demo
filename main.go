@@ -12,8 +12,6 @@ import (
 	"github.com/xavier268/go-antlr4-demo/internal/pkg/myparser"
 )
 
-var p *myparser.ExprParser
-
 func main() {
 
 	fmt.Println("Launching ...")
@@ -41,31 +39,17 @@ func main() {
 	stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
 
 	// Create the Parser
-	p = myparser.NewExprParser(stream)
+	p := myparser.NewExprParser(stream)
 
 	// Build ast, starting with the "prog" rule
 	ast := p.Prog()
 	fmt.Println("Dumping ast : ", ast.ToStringTree(nil, p))
 
-	// Walk the tree with the dump listener
-	listener := new(dumpListener)
+	// Walk the tree with the  listener
+	//listener := NewDumpListener(p)
+	listener := NewComputeListener()
 	antlr.ParseTreeWalkerDefault.Walk(listener, ast)
-
+	listener.dumpMap()
 	return
 
-}
-
-//dumpListener will dump the rules and context
-type dumpListener struct {
-	*myparser.BaseExprListener
-}
-
-func (dl *dumpListener) ExitEveryRule(ctx antlr.ParserRuleContext) {
-	fmt.Printf("\n<<<< EXITING rule, context : %q, rule : %d\n", ctx.GetText(), ctx.GetRuleIndex())
-	fmt.Println(ctx.ToStringTree(nil, p))
-}
-
-func (dl *dumpListener) EnterEveryRule(ctx antlr.ParserRuleContext) {
-	fmt.Printf("\n>>>> ENTERING rule, context : %q, rule : %d\n", ctx.GetText(), ctx.GetRuleIndex())
-	fmt.Println(ctx.ToStringTree(nil, p))
 }
