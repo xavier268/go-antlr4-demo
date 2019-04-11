@@ -28,8 +28,10 @@ func main() {
 		if t.GetTokenType() == antlr.TokenEOF {
 			break
 		}
-		fmt.Printf("%s \t%d \t%q \n",
-			lexer.SymbolicNames[t.GetTokenType()], t.GetTokenType(), t.GetText())
+		fmt.Printf("%d \t%s \t%q \n",
+			t.GetTokenType(),
+			lexer.SymbolicNames[t.GetTokenType()],
+			t.GetText())
 	}
 	return
 
