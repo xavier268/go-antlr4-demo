@@ -80,6 +80,12 @@ func (s *BaseExprListener) EnterId(ctx *IdContext) {}
 // ExitId is called when production id is exited.
 func (s *BaseExprListener) ExitId(ctx *IdContext) {}
 
+// EnterUnary is called when production Unary is entered.
+func (s *BaseExprListener) EnterUnary(ctx *UnaryContext) {}
+
+// ExitUnary is called when production Unary is exited.
+func (s *BaseExprListener) ExitUnary(ctx *UnaryContext) {}
+
 // EnterInt is called when production int is entered.
 func (s *BaseExprListener) EnterInt(ctx *IntContext) {}
 

@@ -37,6 +37,9 @@ type ExprListener interface {
 	// EnterId is called when entering the id production.
 	EnterId(c *IdContext)
 
+	// EnterUnary is called when entering the Unary production.
+	EnterUnary(c *UnaryContext)
+
 	// EnterInt is called when entering the int production.
 	EnterInt(c *IntContext)
 
@@ -69,6 +72,9 @@ type ExprListener interface {
 
 	// ExitId is called when exiting the id production.
 	ExitId(c *IdContext)
+
+	// ExitUnary is called when exiting the Unary production.
+	ExitUnary(c *UnaryContext)
 
 	// ExitInt is called when exiting the int production.
 	ExitInt(c *IntContext)
