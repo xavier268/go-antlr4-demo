@@ -31,4 +31,5 @@ func (cl *ComputeListener) dumpMap() {
 	for k, v := range cl.m {
 		fmt.Printf("\n%p\t->\t%f", k, v)
 	}
+	fmt.Println()
 }
