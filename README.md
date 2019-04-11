@@ -10,7 +10,7 @@ Ideas implemented in this demo include :
 
 * Integrating grammar processing with go:generate (just ensure antlr is available as a tool, and the go runtime target has been downloaded )
 ```` 
-    git clone https://github.com/xavier268/go-antlr4-demo
+    git clone https://github.com/xavier268/go-antlr4-demo.git
     cd go-antlr4-demo
     go generate
     go run .
