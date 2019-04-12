@@ -7,7 +7,7 @@ import (
 	"github.com/xavier268/go-antlr4-demo/internal/pkg/myparser"
 )
 
-//MyParser is the base object for parsing
+//MyParser is the base object for parsing and walking a parsed tree
 type MyParser struct {
 	Parser *myparser.ExprParser
 	Root   myparser.IProgContext
@@ -25,6 +25,9 @@ func (mp *MyParser) Parse(intxt string) {
 
 //Walk run the listener over the ast (abstract syntax tree)
 func (mp *MyParser) Walk(list myparser.ExprListener) {
+	if mp.Root == nil {
+		panic("Cannot walk before a parsing was made ?!")
+	}
 	antlr.ParseTreeWalkerDefault.Walk(list, mp.Root)
 }
 
