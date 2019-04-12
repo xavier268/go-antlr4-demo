@@ -47,7 +47,7 @@ func (cl *ComputeListener) ExitInt(ctx *myparser.IntContext) {
 // ExitPrintExpr is called when production printExpr is exited.
 func (cl *ComputeListener) ExitPrintExpr(ctx *myparser.PrintExprContext) {
 	cl.m[ctx.GetPayload()] = cl.m[ctx.Expr().GetPayload()]
-	fmt.Printf("\nPrinting>%f\n", cl.m[ctx.GetPayload()])
+	fmt.Printf("\nPrinting>%f", cl.m[ctx.GetPayload()])
 }
 
 // ExitAssign is called when production assign is exited.

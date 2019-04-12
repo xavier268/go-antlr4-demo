@@ -14,45 +14,41 @@ func TestWalkBeforeParseShouldPanic(t *testing.T) {
 }
 
 func TestParseInvalidSyntax(t *testing.T) {
+	t.Skip()
 	mp := new(MyParser)
 	mp.Parse("1 + $$ +  \n")
 }
 
-func TestParseValidSyntax(t *testing.T) {
-	mp := new(MyParser)
-	mp.Parse("1 + 2 *3 \n")
-	mp.Dump()
-}
-
 func TestWalkDumpListener(t *testing.T) {
+	t.Skip()
 	mp := new(MyParser)
 	mp.Parse("titi = 1 +2 *3\n")
 	dl := NewDumpListener(mp.Parser)
 	mp.Walk(dl)
 }
 
-func TestWalkComputeListener1(t *testing.T) {
-	mp := new(MyParser)
-	mp.Parse("444\n")
-	cl := NewComputeListener()
-	mp.Walk(cl)
-	cl.dumpMaps()
-}
+func TestWalkComputeListener(t *testing.T) {
+	// maps to the expected value of x
+	tab := map[string]float64{
+		"1\n":           0, // x was not allocated
+		"y = 1\n":       0, // x was not allocated
+		"x=1+1\nx\nx\n": 2,
+		"x=-5+8\n":      3.0,
+		"x=-x+100\n":    100,
+		"x=x+100\n":     100,
+	}
 
-func TestWalkComputeListener2(t *testing.T) {
-	mp := new(MyParser)
-	mp.Parse("titi = -111 + 11\n")
-	mp.Dump()
-	cl := NewComputeListener()
-	mp.Walk(cl)
-	cl.dumpMaps()
-}
+	for k, v := range tab {
+		mp := new(MyParser)
+		mp.Parse(k)
+		cl := NewComputeListener()
+		mp.Walk(cl)
+		if cl.ids["x"] != v {
+			mp.Dump()
+			cl.dumpMaps()
+			t.Error("Expecting ", v, " got ", cl.ids["x"])
+			t.FailNow()
+		}
+	}
 
-func TestWalkComputeListener3(t *testing.T) {
-	mp := new(MyParser)
-	mp.Parse("x = 3*(10 + 5/3)\nx+2*x")
-	mp.Dump()
-	cl := NewComputeListener()
-	mp.Walk(cl)
-	cl.dumpMaps()
 }
