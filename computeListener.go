@@ -83,7 +83,7 @@ func (cl *ComputeListener) ExitParenth(ctx *myparser.ParenthContext) {
 }
 
 // ExitId is called when exiting the Id production.
-func (cl *ComputeListener) ExitId(ctx *myparser.IdContext) {
+func (cl *ComputeListener) ExitId(ctx *myparser.IdContext) { // nolint (should not change spelling !)
 	cl.m[ctx.GetPayload()] = cl.ids[ctx.GetText()]
 }
 

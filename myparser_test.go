@@ -20,22 +20,37 @@ func TestParseInvalidSyntax(t *testing.T) {
 }
 
 func TestWalkDumpListener(t *testing.T) {
-	t.Skip()
+	//t.Skip()
 	mp := new(MyParser)
-	mp.Parse("titi = 1 +2 *3\n")
+	mp.Parse("1+2\n")
+	mp.Dump()
 	dl := NewDumpListener(mp.Parser)
 	mp.Walk(dl)
 }
 
 func TestWalkComputeListener(t *testing.T) {
-	// maps to the expected value of x
+	// maps to the expected value of x after the program was run
 	tab := map[string]float64{
-		"1\n":           0, // x was not allocated
-		"y = 1\n":       0, // x was not allocated
-		"x=1+1\nx\nx\n": 2,
-		"x=-5+8\n":      3.0,
-		"x=-x+100\n":    100,
-		"x=x+100\n":     100,
+		"\n":                0, // x was not allocated
+		"1\n":               0, // x was not allocated
+		"y = 1\n":           0, // x was not allocated
+		"x=1+1\nx=x+1\nx\n": 3,
+		"x=-5+8\n":          3.0,
+		"x=-x+100\n":        100,
+		"x=1+2*3\n":         7,
+		"x=1+-2*3\n":        -5,
+		"x=-1+2*3\n":        5,
+		"x=x+100\n":         100,
+		"x=1 + (2*3)\n":     7,
+		"x=(1+2)*3)\n":      9,
+		"x=-(1+2)*3)\n":     -9,
+		"x=---5\n":          -5,
+		"x=--5\n":           5,
+		"x=-5\n":            -5,
+		"x=3/4":             0.75,
+		"x=3-4":             -1,
+		"x=444444444\n":     444444444,
+		"y=45-5\nx=y+4\n":   44,
 	}
 
 	for k, v := range tab {
@@ -43,10 +58,14 @@ func TestWalkComputeListener(t *testing.T) {
 		mp.Parse(k)
 		cl := NewComputeListener()
 		mp.Walk(cl)
+		if len(cl.ids) > 1 {
+			// Multiple variables
+			cl.dumpMaps()
+		}
 		if cl.ids["x"] != v {
 			mp.Dump()
 			cl.dumpMaps()
-			t.Error("Expecting ", v, " got ", cl.ids["x"])
+			t.Error("Expected ", v, " but got ", cl.ids["x"])
 			t.FailNow()
 		}
 	}
