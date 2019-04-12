@@ -12,11 +12,11 @@ stat:   expr NEWLINE          # printExpr
     |   NEWLINE               # blank
     ;
 
-expr:   expr '*' expr         # Mul
+expr:   '-' expr	            # Unary
+    |   expr '*' expr         # Mul
     |   expr '/' expr         # Div
     |   expr '+' expr         # Add
     |   expr '-' expr         # Sub
-    |   '-' expr	      # Unary
     |   INT                   # int
     |   ID                    # id
     |   '(' expr ')'          # parenth

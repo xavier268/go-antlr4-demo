@@ -22,18 +22,17 @@ func NewDumpListener(p *myparser.ExprParser) *DumpListener {
 
 //ExitEveryRule dump
 func (dl *DumpListener) ExitEveryRule(ctx antlr.ParserRuleContext) {
-	fmt.Println(">>>> EXITING ...")
+	fmt.Printf(">>>> EXITING ...\t")
 	dl.dump(ctx)
 }
 
 //EnterEveryRule dump
 func (dl *DumpListener) EnterEveryRule(ctx antlr.ParserRuleContext) {
-	fmt.Println(">>>> ENTERING ...")
+	fmt.Printf(">>>> ENTERING ...\t")
 	dl.dump(ctx)
 }
 
 func (dl *DumpListener) dump(ctx antlr.ParserRuleContext) {
 	fmt.Printf("context : %q, rule : %d\n", ctx.GetText(), ctx.GetRuleIndex())
 	fmt.Println(ctx.ToStringTree(nil, dl.p))
-	fmt.Printf("Key to payload : %p\n", ctx.GetPayload())
 }

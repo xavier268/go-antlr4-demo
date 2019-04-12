@@ -15,7 +15,7 @@ type MyParser struct {
 
 //Parse parse the string, returning the ast (abstract syntax tree)
 func (mp *MyParser) Parse(intxt string) {
-	fmt.Println("Parsing from string input :\n", intxt)
+	fmt.Println("\nParsing from string input :\n", intxt)
 	is := antlr.NewInputStream(intxt)
 	lexer := myparser.NewExprLexer(is)
 	stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)

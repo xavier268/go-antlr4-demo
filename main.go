@@ -16,7 +16,7 @@ func main() {
 
 	cl := NewComputeListener()
 	mp.Walk(cl)
-	cl.dumpMap()
+	cl.dumpMaps()
 
 	dl := NewDumpListener(mp.Parser)
 	mp.Walk(dl)

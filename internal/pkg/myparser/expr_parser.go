@@ -27,23 +27,23 @@ var parserATN = []uint16{
 	2, 15, 23, 3, 2, 2, 2, 16, 17, 7, 10, 2, 2, 17, 18, 7, 3, 2, 2, 18, 19,
 	5, 6, 4, 2, 19, 20, 7, 12, 2, 2, 20, 23, 3, 2, 2, 2, 21, 23, 7, 12, 2,
 	2, 22, 13, 3, 2, 2, 2, 22, 16, 3, 2, 2, 2, 22, 21, 3, 2, 2, 2, 23, 5, 3,
-	2, 2, 2, 24, 25, 8, 4, 1, 2, 25, 26, 7, 7, 2, 2, 26, 34, 5, 6, 4, 6, 27,
+	2, 2, 2, 24, 25, 8, 4, 1, 2, 25, 26, 7, 4, 2, 2, 26, 34, 5, 6, 4, 10, 27,
 	34, 7, 11, 2, 2, 28, 34, 7, 10, 2, 2, 29, 30, 7, 8, 2, 2, 30, 31, 5, 6,
 	4, 2, 31, 32, 7, 9, 2, 2, 32, 34, 3, 2, 2, 2, 33, 24, 3, 2, 2, 2, 33, 27,
 	3, 2, 2, 2, 33, 28, 3, 2, 2, 2, 33, 29, 3, 2, 2, 2, 34, 49, 3, 2, 2, 2,
-	35, 36, 12, 10, 2, 2, 36, 37, 7, 4, 2, 2, 37, 48, 5, 6, 4, 11, 38, 39,
-	12, 9, 2, 2, 39, 40, 7, 5, 2, 2, 40, 48, 5, 6, 4, 10, 41, 42, 12, 8, 2,
-	2, 42, 43, 7, 6, 2, 2, 43, 48, 5, 6, 4, 9, 44, 45, 12, 7, 2, 2, 45, 46,
-	7, 7, 2, 2, 46, 48, 5, 6, 4, 8, 47, 35, 3, 2, 2, 2, 47, 38, 3, 2, 2, 2,
-	47, 41, 3, 2, 2, 2, 47, 44, 3, 2, 2, 2, 48, 51, 3, 2, 2, 2, 49, 47, 3,
-	2, 2, 2, 49, 50, 3, 2, 2, 2, 50, 7, 3, 2, 2, 2, 51, 49, 3, 2, 2, 2, 7,
-	11, 22, 33, 47, 49,
+	35, 36, 12, 9, 2, 2, 36, 37, 7, 5, 2, 2, 37, 48, 5, 6, 4, 10, 38, 39, 12,
+	8, 2, 2, 39, 40, 7, 6, 2, 2, 40, 48, 5, 6, 4, 9, 41, 42, 12, 7, 2, 2, 42,
+	43, 7, 7, 2, 2, 43, 48, 5, 6, 4, 8, 44, 45, 12, 6, 2, 2, 45, 46, 7, 4,
+	2, 2, 46, 48, 5, 6, 4, 7, 47, 35, 3, 2, 2, 2, 47, 38, 3, 2, 2, 2, 47, 41,
+	3, 2, 2, 2, 47, 44, 3, 2, 2, 2, 48, 51, 3, 2, 2, 2, 49, 47, 3, 2, 2, 2,
+	49, 50, 3, 2, 2, 2, 50, 7, 3, 2, 2, 2, 51, 49, 3, 2, 2, 2, 7, 11, 22, 33,
+	47, 49,
 }
 var deserializer = antlr.NewATNDeserializer(nil)
 var deserializedATN = deserializer.DeserializeFromUInt16(parserATN)
 
 var literalNames = []string{
-	"", "'='", "'*'", "'/'", "'+'", "'-'", "'('", "')'",
+	"", "'='", "'-'", "'*'", "'/'", "'+'", "'('", "')'",
 }
 var symbolicNames = []string{
 	"", "", "", "", "", "", "", "", "ID", "INT", "NEWLINE", "WS",
@@ -208,7 +208,7 @@ func (p *ExprParser) Prog() (localctx IProgContext) {
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for ok := true; ok; ok = (((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<ExprParserT__4)|(1<<ExprParserT__5)|(1<<ExprParserID)|(1<<ExprParserINT)|(1<<ExprParserNEWLINE))) != 0) {
+	for ok := true; ok; ok = (((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<ExprParserT__1)|(1<<ExprParserT__5)|(1<<ExprParserID)|(1<<ExprParserINT)|(1<<ExprParserNEWLINE))) != 0) {
 		{
 			p.SetState(6)
 			p.Stat()
@@ -912,18 +912,18 @@ func (p *ExprParser) expr(_p int) (localctx IExprContext) {
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
-	case ExprParserT__4:
+	case ExprParserT__1:
 		localctx = NewUnaryContext(p, localctx)
 		p.SetParserRuleContext(localctx)
 		_prevctx = localctx
 
 		{
 			p.SetState(23)
-			p.Match(ExprParserT__4)
+			p.Match(ExprParserT__1)
 		}
 		{
 			p.SetState(24)
-			p.expr(4)
+			p.expr(8)
 		}
 
 	case ExprParserINT:
@@ -983,16 +983,16 @@ func (p *ExprParser) expr(_p int) (localctx IExprContext) {
 				p.PushNewRecursionContext(localctx, _startState, ExprParserRULE_expr)
 				p.SetState(33)
 
-				if !(p.Precpred(p.GetParserRuleContext(), 8)) {
-					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 8)", ""))
+				if !(p.Precpred(p.GetParserRuleContext(), 7)) {
+					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 7)", ""))
 				}
 				{
 					p.SetState(34)
-					p.Match(ExprParserT__1)
+					p.Match(ExprParserT__2)
 				}
 				{
 					p.SetState(35)
-					p.expr(9)
+					p.expr(8)
 				}
 
 			case 2:
@@ -1000,16 +1000,16 @@ func (p *ExprParser) expr(_p int) (localctx IExprContext) {
 				p.PushNewRecursionContext(localctx, _startState, ExprParserRULE_expr)
 				p.SetState(36)
 
-				if !(p.Precpred(p.GetParserRuleContext(), 7)) {
-					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 7)", ""))
+				if !(p.Precpred(p.GetParserRuleContext(), 6)) {
+					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 6)", ""))
 				}
 				{
 					p.SetState(37)
-					p.Match(ExprParserT__2)
+					p.Match(ExprParserT__3)
 				}
 				{
 					p.SetState(38)
-					p.expr(8)
+					p.expr(7)
 				}
 
 			case 3:
@@ -1017,16 +1017,16 @@ func (p *ExprParser) expr(_p int) (localctx IExprContext) {
 				p.PushNewRecursionContext(localctx, _startState, ExprParserRULE_expr)
 				p.SetState(39)
 
-				if !(p.Precpred(p.GetParserRuleContext(), 6)) {
-					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 6)", ""))
+				if !(p.Precpred(p.GetParserRuleContext(), 5)) {
+					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 5)", ""))
 				}
 				{
 					p.SetState(40)
-					p.Match(ExprParserT__3)
+					p.Match(ExprParserT__4)
 				}
 				{
 					p.SetState(41)
-					p.expr(7)
+					p.expr(6)
 				}
 
 			case 4:
@@ -1034,16 +1034,16 @@ func (p *ExprParser) expr(_p int) (localctx IExprContext) {
 				p.PushNewRecursionContext(localctx, _startState, ExprParserRULE_expr)
 				p.SetState(42)
 
-				if !(p.Precpred(p.GetParserRuleContext(), 5)) {
-					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 5)", ""))
+				if !(p.Precpred(p.GetParserRuleContext(), 4)) {
+					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 4)", ""))
 				}
 				{
 					p.SetState(43)
-					p.Match(ExprParserT__4)
+					p.Match(ExprParserT__1)
 				}
 				{
 					p.SetState(44)
-					p.expr(6)
+					p.expr(5)
 				}
 
 			}
@@ -1074,16 +1074,16 @@ func (p *ExprParser) Sempred(localctx antlr.RuleContext, ruleIndex, predIndex in
 func (p *ExprParser) Expr_Sempred(localctx antlr.RuleContext, predIndex int) bool {
 	switch predIndex {
 	case 0:
-		return p.Precpred(p.GetParserRuleContext(), 8)
-
-	case 1:
 		return p.Precpred(p.GetParserRuleContext(), 7)
 
-	case 2:
+	case 1:
 		return p.Precpred(p.GetParserRuleContext(), 6)
 
-	case 3:
+	case 2:
 		return p.Precpred(p.GetParserRuleContext(), 5)
+
+	case 3:
+		return p.Precpred(p.GetParserRuleContext(), 4)
 
 	default:
 		panic("No predicate with index: " + fmt.Sprint(predIndex))
