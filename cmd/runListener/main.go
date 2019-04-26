@@ -1,11 +1,11 @@
 //Package main
-//
-//The following lines will trigger the automatic generation
-//go:generate rm -f -r internal/pkg/myparser/
-//go:generate antlr -Dlanguage=Go -package myparser -o internal/pkg/myparser Expr.g4
 package main
 
+import "fmt"
+
 func main() {
+
+	fmt.Println("Demo of using  Listener")
 
 	// Setup the input
 	const intxt = "1 - 2 * 3\ntiti = 56 + 68\n"

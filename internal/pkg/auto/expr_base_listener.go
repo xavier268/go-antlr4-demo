@@ -1,6 +1,6 @@
 // Code generated from Expr.g4 by ANTLR 4.7.2. DO NOT EDIT.
 
-package myparser // Expr
+package auto // Expr
 import "github.com/antlr/antlr4/runtime/Go/antlr"
 
 // BaseExprListener is a complete listener for a parse tree produced by ExprParser.

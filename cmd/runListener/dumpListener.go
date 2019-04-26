@@ -4,17 +4,17 @@ import (
 	"fmt"
 
 	"github.com/antlr/antlr4/runtime/Go/antlr"
-	"github.com/xavier268/go-antlr4-demo/internal/pkg/myparser"
+	"github.com/xavier268/go-antlr4-demo/internal/pkg/auto"
 )
 
 //DumpListener will dump the rules and context
 type DumpListener struct {
-	*myparser.BaseExprListener
-	p *myparser.ExprParser
+	*auto.BaseExprListener
+	p *auto.ExprParser
 }
 
 //NewDumpListener creates a dump listener using the provided parser
-func NewDumpListener(p *myparser.ExprParser) *DumpListener {
+func NewDumpListener(p *auto.ExprParser) *DumpListener {
 	var d = new(DumpListener)
 	d.p = p
 	return d
