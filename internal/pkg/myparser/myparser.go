@@ -1,3 +1,4 @@
+//Package myparser provides generic parsing, listening and visiting entry points.
 package myparser
 
 import (
