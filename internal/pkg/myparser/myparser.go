@@ -23,8 +23,8 @@ func (mp *MyParser) Parse(intxt string) {
 	mp.Root = mp.Parser.Prog()
 }
 
-//Walk run the listener over the ast (abstract syntax tree)
-func (mp *MyParser) Walk(list auto.ExprListener) {
+//WalkWith run the listener over the ast (abstract syntax tree)
+func (mp *MyParser) WalkWith(list auto.ExprListener) {
 	if mp.Root == nil {
 		panic("Cannot walk before a parsing was made ?!")
 	}
@@ -34,4 +34,9 @@ func (mp *MyParser) Walk(list auto.ExprListener) {
 //Dump the ast in a readable format
 func (mp *MyParser) Dump() {
 	fmt.Println("Abstract Syntax Tree : ", mp.Root.ToStringTree(nil, mp.Parser))
+}
+
+//VisitWith visit root using the provided visitor.
+func (mp *MyParser) VisitWith(v antlr.ParseTreeVisitor) interface{} {
+	return mp.Root.Accept(v)
 }

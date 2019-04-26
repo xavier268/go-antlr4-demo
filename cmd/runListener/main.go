@@ -20,11 +20,11 @@ func main() {
 	mp.Dump()
 
 	cl := listeners.NewComputeListener()
-	mp.Walk(cl)
+	mp.WalkWith(cl)
 	cl.DumpMaps()
 
 	dl := listeners.NewDumpListener(mp.Parser)
-	mp.Walk(dl)
+	mp.WalkWith(dl)
 
 	return
 }

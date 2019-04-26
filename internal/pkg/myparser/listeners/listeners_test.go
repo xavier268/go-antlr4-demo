@@ -14,7 +14,7 @@ func TestWalkBeforeParseShouldPanic(t *testing.T) {
 	}()
 	// Code that should panic
 	mp := new(myparser.MyParser)
-	mp.Walk(NewComputeListener())
+	mp.WalkWith(NewComputeListener())
 }
 
 func TestParseInvalidSyntax(t *testing.T) {
@@ -29,7 +29,7 @@ func TestWalkDumpListener(t *testing.T) {
 	mp.Parse("1+2\n")
 	mp.Dump()
 	dl := NewDumpListener(mp.Parser)
-	mp.Walk(dl)
+	mp.WalkWith(dl)
 }
 
 func TestWalkComputeListener(t *testing.T) {
@@ -61,7 +61,7 @@ func TestWalkComputeListener(t *testing.T) {
 		mp := new(myparser.MyParser)
 		mp.Parse(k)
 		cl := NewComputeListener()
-		mp.Walk(cl)
+		mp.WalkWith(cl)
 		if len(cl.ids) > 1 {
 			// Multiple variables
 			cl.DumpMaps()
