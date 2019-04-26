@@ -1,4 +1,4 @@
-package main
+package listeners
 
 import (
 	"fmt"
@@ -23,7 +23,8 @@ func NewComputeListener() *ComputeListener {
 	return cl
 }
 
-func (cl *ComputeListener) dumpMaps() {
+//DumpMaps will dump and display the tree and the variables map
+func (cl *ComputeListener) DumpMaps() {
 	fmt.Println("Dumping annotated Tree :")
 	for k, v := range cl.m {
 		fmt.Printf("%p\t->\t%f\n", k, v)

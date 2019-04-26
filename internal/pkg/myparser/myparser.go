@@ -1,4 +1,4 @@
-package main
+package myparser
 
 import (
 	"fmt"
@@ -7,13 +7,13 @@ import (
 	"github.com/xavier268/go-antlr4-demo/internal/pkg/auto"
 )
 
-//MyParser is the base object for parsing and walking a parsed tree
+//MyParser is the base object for parsing, walking or visiting a parsed tree
 type MyParser struct {
-	Parser *auto.ExprParser
-	Root   auto.IProgContext
+	Parser *auto.ExprParser  // The expression parser
+	Root   auto.IProgContext // The root of the parsed AST
 }
 
-//Parse parse the string, returning the ast (abstract syntax tree)
+//Parse parse the string, setting the ast (abstract syntax tree)
 func (mp *MyParser) Parse(intxt string) {
 	fmt.Println("\n\nParsing from string input :\n", intxt)
 	is := antlr.NewInputStream(intxt)

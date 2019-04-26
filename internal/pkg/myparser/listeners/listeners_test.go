@@ -1,6 +1,10 @@
-package main
+package listeners
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/xavier268/go-antlr4-demo/internal/pkg/myparser"
+)
 
 func TestWalkBeforeParseShouldPanic(t *testing.T) {
 	defer func() {
@@ -9,19 +13,19 @@ func TestWalkBeforeParseShouldPanic(t *testing.T) {
 		}
 	}()
 	// Code that should panic
-	mp := new(MyParser)
+	mp := new(myparser.MyParser)
 	mp.Walk(NewComputeListener())
 }
 
 func TestParseInvalidSyntax(t *testing.T) {
 	t.Skip()
-	mp := new(MyParser)
+	mp := new(myparser.MyParser)
 	mp.Parse("1 + $$ +  \n")
 }
 
 func TestWalkDumpListener(t *testing.T) {
 	//t.Skip()
-	mp := new(MyParser)
+	mp := new(myparser.MyParser)
 	mp.Parse("1+2\n")
 	mp.Dump()
 	dl := NewDumpListener(mp.Parser)
@@ -54,17 +58,17 @@ func TestWalkComputeListener(t *testing.T) {
 	}
 
 	for k, v := range tab {
-		mp := new(MyParser)
+		mp := new(myparser.MyParser)
 		mp.Parse(k)
 		cl := NewComputeListener()
 		mp.Walk(cl)
 		if len(cl.ids) > 1 {
 			// Multiple variables
-			cl.dumpMaps()
+			cl.DumpMaps()
 		}
 		if cl.ids["x"] != v {
 			mp.Dump()
-			cl.dumpMaps()
+			cl.DumpMaps()
 			t.Error("Expected ", v, " but got ", cl.ids["x"])
 			t.FailNow()
 		}
