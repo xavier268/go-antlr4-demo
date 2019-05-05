@@ -31,11 +31,11 @@ type ExprListener interface {
 	// EnterMul is called when entering the Mul production.
 	EnterMul(c *MulContext)
 
+	// EnterIdent is called when entering the ident production.
+	EnterIdent(c *IdentContext)
+
 	// EnterParenth is called when entering the parenth production.
 	EnterParenth(c *ParenthContext)
-
-	// EnterId is called when entering the id production.
-	EnterId(c *IdContext)
 
 	// EnterUnary is called when entering the Unary production.
 	EnterUnary(c *UnaryContext)
@@ -67,11 +67,11 @@ type ExprListener interface {
 	// ExitMul is called when exiting the Mul production.
 	ExitMul(c *MulContext)
 
+	// ExitIdent is called when exiting the ident production.
+	ExitIdent(c *IdentContext)
+
 	// ExitParenth is called when exiting the parenth production.
 	ExitParenth(c *ParenthContext)
-
-	// ExitId is called when exiting the id production.
-	ExitId(c *IdContext)
 
 	// ExitUnary is called when exiting the Unary production.
 	ExitUnary(c *UnaryContext)

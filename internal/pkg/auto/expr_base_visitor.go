@@ -39,11 +39,11 @@ func (v *BaseExprVisitor) VisitMul(ctx *MulContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseExprVisitor) VisitParenth(ctx *ParenthContext) interface{} {
+func (v *BaseExprVisitor) VisitIdent(ctx *IdentContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseExprVisitor) VisitId(ctx *IdContext) interface{} {
+func (v *BaseExprVisitor) VisitParenth(ctx *ParenthContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 

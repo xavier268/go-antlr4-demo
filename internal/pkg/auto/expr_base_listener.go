@@ -68,17 +68,17 @@ func (s *BaseExprListener) EnterMul(ctx *MulContext) {}
 // ExitMul is called when production Mul is exited.
 func (s *BaseExprListener) ExitMul(ctx *MulContext) {}
 
+// EnterIdent is called when production ident is entered.
+func (s *BaseExprListener) EnterIdent(ctx *IdentContext) {}
+
+// ExitIdent is called when production ident is exited.
+func (s *BaseExprListener) ExitIdent(ctx *IdentContext) {}
+
 // EnterParenth is called when production parenth is entered.
 func (s *BaseExprListener) EnterParenth(ctx *ParenthContext) {}
 
 // ExitParenth is called when production parenth is exited.
 func (s *BaseExprListener) ExitParenth(ctx *ParenthContext) {}
-
-// EnterId is called when production id is entered.
-func (s *BaseExprListener) EnterId(ctx *IdContext) {}
-
-// ExitId is called when production id is exited.
-func (s *BaseExprListener) ExitId(ctx *IdContext) {}
 
 // EnterUnary is called when production Unary is entered.
 func (s *BaseExprListener) EnterUnary(ctx *UnaryContext) {}

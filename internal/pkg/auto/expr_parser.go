@@ -808,6 +808,50 @@ func (s *MulContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 	}
 }
 
+type IdentContext struct {
+	*ExprContext
+}
+
+func NewIdentContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *IdentContext {
+	var p = new(IdentContext)
+
+	p.ExprContext = NewEmptyExprContext()
+	p.parser = parser
+	p.CopyFrom(ctx.(*ExprContext))
+
+	return p
+}
+
+func (s *IdentContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *IdentContext) ID() antlr.TerminalNode {
+	return s.GetToken(ExprParserID, 0)
+}
+
+func (s *IdentContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(ExprListener); ok {
+		listenerT.EnterIdent(s)
+	}
+}
+
+func (s *IdentContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(ExprListener); ok {
+		listenerT.ExitIdent(s)
+	}
+}
+
+func (s *IdentContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case ExprVisitor:
+		return t.VisitIdent(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
 type ParenthContext struct {
 	*ExprContext
 }
@@ -852,50 +896,6 @@ func (s *ParenthContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 	switch t := visitor.(type) {
 	case ExprVisitor:
 		return t.VisitParenth(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
-type IdContext struct {
-	*ExprContext
-}
-
-func NewIdContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *IdContext {
-	var p = new(IdContext)
-
-	p.ExprContext = NewEmptyExprContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*ExprContext))
-
-	return p
-}
-
-func (s *IdContext) GetRuleContext() antlr.RuleContext {
-	return s
-}
-
-func (s *IdContext) ID() antlr.TerminalNode {
-	return s.GetToken(ExprParserID, 0)
-}
-
-func (s *IdContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(ExprListener); ok {
-		listenerT.EnterId(s)
-	}
-}
-
-func (s *IdContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(ExprListener); ok {
-		listenerT.ExitId(s)
-	}
-}
-
-func (s *IdContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case ExprVisitor:
-		return t.VisitId(s)
 
 	default:
 		return t.VisitChildren(s)
@@ -1056,7 +1056,7 @@ func (p *ExprParser) expr(_p int) (localctx IExprContext) {
 		}
 
 	case ExprParserID:
-		localctx = NewIdContext(p, localctx)
+		localctx = NewIdentContext(p, localctx)
 		p.SetParserRuleContext(localctx)
 		_prevctx = localctx
 		{

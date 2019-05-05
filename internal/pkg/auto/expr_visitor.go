@@ -31,11 +31,11 @@ type ExprVisitor interface {
 	// Visit a parse tree produced by ExprParser#Mul.
 	VisitMul(ctx *MulContext) interface{}
 
+	// Visit a parse tree produced by ExprParser#ident.
+	VisitIdent(ctx *IdentContext) interface{}
+
 	// Visit a parse tree produced by ExprParser#parenth.
 	VisitParenth(ctx *ParenthContext) interface{}
-
-	// Visit a parse tree produced by ExprParser#id.
-	VisitId(ctx *IdContext) interface{}
 
 	// Visit a parse tree produced by ExprParser#Unary.
 	VisitUnary(ctx *UnaryContext) interface{}

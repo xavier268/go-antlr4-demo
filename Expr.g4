@@ -18,7 +18,7 @@ expr:   '-' expr	            # Unary
     |   expr '+' expr         # Add
     |   expr '-' expr         # Sub
     |   INT                   # int
-    |   ID                    # id
+    |   ID                    # ident
     |   '(' expr ')'          # parenth
     ;
 
